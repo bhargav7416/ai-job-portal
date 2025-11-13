@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/job.controller'); const a=require('../middleware/auth.middleware'); r.post('/',a,c.createJob); r.get('/',c.listJobs); r.get('/:id',c.getJob); module.exports=r;

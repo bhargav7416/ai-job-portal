@@ -1,0 +1,20 @@
+const mongoose = require('mongoose');
+require('dotenv').config();
+const User = require('../models/User');
+const Job = require('../models/Job');
+const Application = require('../models/Application');
+(async ()=>{
+  const MONGO = process.env.MONGO_URI || 'mongodb://localhost:27017/ai-job-portal';
+  await mongoose.connect(MONGO);
+  console.log('Connected to DB for seeding...');
+  await User.deleteMany({}); await Job.deleteMany({}); await Application.deleteMany({});
+  const alice = await User.create({ name: 'Alice', email: 'alice@example.com', password: 'password123' });
+  const bob = await User.create({ name: 'Bob', email: 'bob@company.com', password: 'password123', role: 'employer' });
+  const job1 = await Job.create({ title: 'Frontend Developer', description: 'Build React apps', company: 'Acme', location: 'Remote', skills_required: ['React','TypeScript'], posted_by: bob._id });
+  const job2 = await Job.create({ title: 'Backend Developer', description: 'Node & Mongo', company: 'Acme', location: 'Remote', skills_required: ['Node.js','MongoDB'], posted_by: bob._id });
+  await Application.create({ job_id: job1._id, user_id: alice._id, cover_letter: 'I am excited' });
+  console.log('Seed complete. Credentials:');
+  console.log('Alice: alice@example.com / password123');
+  console.log('Bob: bob@company.com / password123');
+  process.exit(0);
+})().catch(err=>{ console.error(err); process.exit(1); });

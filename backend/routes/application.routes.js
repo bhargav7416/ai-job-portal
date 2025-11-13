@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/application.controller'); const a=require('../middleware/auth.middleware'); r.post('/',a,c.apply); r.get('/user/:userId',a,c.getByUser); module.exports=r;

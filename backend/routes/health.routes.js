@@ -1,0 +1,1 @@
+const r=require('express').Router(); r.get('/',(req,res)=>res.json({status:'ok'})); module.exports=r;

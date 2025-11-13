@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/ai.controller'); r.post('/parse-resume', c.parseResume); r.post('/match-score', c.matchScore); r.post('/chat', c.chat); module.exports=r;
