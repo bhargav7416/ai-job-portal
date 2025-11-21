@@ -22,6 +22,7 @@ app.use(rateLimit({ windowMs: 60*1000, max: 200 }));
 app.use('/api/health', require('./routes/health.routes'));
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/jobs', require('./routes/job.routes'));
+app.get('/', (req, res) => res.json({status: 'Server is running', timestamp: new Date()}));
 app.use('/api/applications', require('./routes/application.routes'));
 app.use('/api/ai', require('./routes/ai.routes'));
 
