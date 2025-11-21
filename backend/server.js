@@ -36,7 +36,7 @@ async function start() {
   console.log('MongoDB connected');
   const { initSocket } = require('./services/socket.service');
   initSocket(server);
-  server.listen(PORT, () => console.log('Server listening on', PORT));
+  server.listen(PORT,'0.0.0.0',  () => console.log('Server listening on', PORT));
 }
 
 if (require.main === module) start();
